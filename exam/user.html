@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>首页</title>
+		<link rel="stylesheet" href="../css/weui.css" />
+		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="../css/font-awesome.css" />
+	</head>
+
+	<body>
+		<div id="container">
+			<div class="weui-cells">
+				<a class="weui-cell weui-cell_access" href="javascript:;">
+					<div class="weui-cell__bd">
+						<p>头像</p>
+					</div>
+					<div class="weui-cell__ft">
+						<img class="weui-avatar" src="../img/avatar.png">
+					</div>
+				</a>
+				<a class="weui-cell weui-cell_access" href="javascript:;">
+					<div class="weui-cell__bd">
+						<p>姓名</p>
+					</div>
+					<div class="weui-cell__ft">
+						何伟义
+					</div>
+				</a>
+				<a class="weui-cell weui-cell_access" href="javascript:;">
+					<div class="weui-cell__bd">
+						<p>微信号</p>
+					</div>
+					<div class="weui-cell__ft">
+						Tonyheweiyi
+					</div>
+				</a>
+				<a class="weui-cell weui-cell_access" href="javascript:;">
+					<div class="weui-cell__bd">
+						<p>二维码</p>
+					</div>
+					<div class="weui-cell__ft"></div>
+				</a>
+				<a class="weui-cell weui-cell_access" href="javascript:;">
+					<div class="weui-cell__bd">
+						<p>我的地址</p>
+					</div>
+					<div class="weui-cell__ft"></div>
+				</a>
+			</div>
+
+			<div class="weui-cells">
+				<a class="weui-cell weui-cell_access" href="javascript:;">
+					<div class="weui-cell__bd">
+						<p>性别</p>
+					</div>
+					<div class="weui-cell__ft"></div>
+				</a>
+				<a class="weui-cell weui-cell_access" href="javascript:;">
+					<div class="weui-cell__bd">
+						<p>地区</p>
+					</div>
+					<div class="weui-cell__ft"></div>
+				</a>
+				<a class="weui-cell weui-cell_access" href="javascript:;">
+					<div class="weui-cell__bd">
+						<p>个性签名</p>
+					</div>
+					<div class="weui-cell__ft"></div>
+				</a>
+			</div>
+		</div>
+		<div class="weui-tabbar">
+			<a href="Q&A.html" class="weui-tabbar__item ">
+				<i class=" fa fa-mortar-board weui-tabbar__icon"></i>
+				<p class="weui-tabbar__label">问答</p>
+			</a>
+			<a href="exam.html" class="weui-tabbar__item ">
+				<i class=" fa fa-pencil-square weui-tabbar__icon"></i>
+				<p class="weui-tabbar__label">考试</p>
+			</a>
+			<a href="book.html" class="weui-tabbar__item">
+				<i class=" fa fa-book weui-tabbar__icon"></i>
+				<p class="weui-tabbar__label">教程</p>
+			</a>
+			<a href="user.html" class="weui-tabbar__item weui-bar__item_on">
+				<i class=" fa fa-user weui-tabbar__icon"></i>
+				<p class="weui-tabbar__label">我的</p>
+			</a>
+		</div>
+
+		<script type="text/javascript" src="../js/zepto.min.js"></script>
+		<script type="text/javascript" src="../js/weui.min.js"></script>
+		<script type="text/javascript" class="home js_show">
+			$(function() {
+				var winH = $(window).height();
+				var categorySpace = 10;
+
+				$('.js_item').on('click', function() {
+					var id = $(this).data('id');
+					window.pageManager.go(id);
+				});
+				$('.js_category').on('click', function() {
+					var $this = $(this),
+						$inner = $this.next('.js_categoryInner'),
+						$page = $this.parents('.page'),
+						$parent = $(this).parent('li');
+					var innerH = $inner.data('height');
+					bear = $page;
+
+					if(!innerH) {
+						$inner.css('height', 'auto');
+						innerH = $inner.height();
+						$inner.removeAttr('style');
+						$inner.data('height', innerH);
+					}
+
+					if($parent.hasClass('js_show')) {
+						$parent.removeClass('js_show');
+					} else {
+						$parent.siblings().removeClass('js_show');
+
+						$parent.addClass('js_show');
+						if(this.offsetTop + this.offsetHeight + innerH > $page.scrollTop() + winH) {
+							var scrollTop = this.offsetTop + this.offsetHeight + innerH - winH + categorySpace;
+
+							if(scrollTop > this.offsetTop) {
+								scrollTop = this.offsetTop - categorySpace;
+							}
+
+							$page.scrollTop(scrollTop);
+						}
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>
