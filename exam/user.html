@@ -38,19 +38,41 @@
 					</div>
 				</a>
 				<a class="weui-cell weui-cell_access" href="javascript:;">
-					<div class="weui-cell__bd">
+					<div class="weui-cell__bd" id="showIOSDialog2">
 						<p>二维码</p>
 					</div>
 					<div class="weui-cell__ft"></div>
 				</a>
 				<a class="weui-cell weui-cell_access" href="javascript:;">
-					<div class="weui-cell__bd">
+					<div class="weui-cell__bd" id="showIOSDialog1">
 						<p>我的地址</p>
 					</div>
 					<div class="weui-cell__ft"></div>
 				</a>
 			</div>
-
+			<div id="dialogs">
+				<!--BEGIN dialog1-->
+				<div class="js_dialog" id="iosDialog1" style="display: none;">
+					<div class="weui-mask"></div>
+					<div class="weui-dialog">
+						<div class="weui-dialog__hd"><strong class="weui-dialog__title">我的地址</strong></div>
+						<div class="weui-dialog__bd">！！！我的房子是紫禁城！！！</div>
+						<div class="weui-dialog__ft">
+							<a href="user.html" class="weui-dialog__btn weui-dialog__btn_default">返回</a>
+						</div>
+					</div>
+				</div>
+				<div class="js_dialog" id="iosDialog2" style="display: none;">
+					<div class="weui-mask"></div>
+					<div class="weui-dialog">
+						<div class="weui-dialog__hd"><strong class="weui-dialog__title">二维码</strong></div>
+						<div class="weui-dialog__bd"><img width="180px" src="../img/n484s.jpg"/></div>
+						<div class="weui-dialog__ft">
+							<a href="user.html" class="weui-dialog__btn weui-dialog__btn_default">返回</a>
+						</div>
+					</div>
+				</div>
+			</div>	
 			<div class="weui-cells">
 				<a class="weui-cell weui-cell_access" href="javascript:;">
 					<div class="weui-cell__bd">
@@ -95,9 +117,23 @@
 		<script type="text/javascript" src="../js/weui.min.js"></script>
 		<script type="text/javascript" class="home js_show">
 			$(function() {
+				var $iosDialog1 = $('#iosDialog1');
+				var $iosDialog2 = $('#iosDialog2');
 				var winH = $(window).height();
 				var categorySpace = 10;
+				
+				$('#dialogs').on('click', '.weui-dialog__btn', function() {
+					$(this).parents('.js_dialog').fadeOut(200);
+				});
 
+				$('#showIOSDialog1').on('click', function() {
+					$iosDialog1.fadeIn(200);
+				});
+				
+				$('#showIOSDialog2').on('click', function() {
+					$iosDialog2.fadeIn(200);
+				});
+				
 				$('.js_item').on('click', function() {
 					var id = $(this).data('id');
 					window.pageManager.go(id);
@@ -135,6 +171,9 @@
 					}
 				});
 			});
+			
+			
+			
 		</script>
 	</body>
 
